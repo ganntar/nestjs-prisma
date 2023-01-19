@@ -1,0 +1,25 @@
+//O provider q vai ser gerado na aplicação
+generator client {
+  provider = "prisma-client-js"
+}
+
+//Qual database usar e qual o endereco da conexao
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//Model representa as entidades no banco de dados
+model Book {
+  //O tipo da coluna é id e o default dela é uuid
+  //Os default muda de acordo com o tipo do parametro no caso String tem o uuid
+  //inteiro tem o auto increment
+  id String @id @default(uuid())
+  title String 
+  description String
+  //Define como chave unica
+  bar_code String @unique
+  //Define como o nome da tabela vai ser no banco de dados
+  //para não ficar Book
+  @@map("books")
+}
